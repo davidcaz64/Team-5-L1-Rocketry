@@ -1,4 +1,4 @@
-#include <Arduino.h>
+//#include <Arduino.h>
 #include <Wire.h>
 #include <Adafruit_BMP280.h>
 
@@ -24,6 +24,12 @@ void setup()
         while (1);
     }
 
+    bmp.setSampling(Adafruit_BMP280::MODE_NORMAL,
+                    Adafruit_BMP280::SAMPLING_X2,
+                    Adafruit_BMP280::SAMPLING_X16,
+                    Adafruit_BMP280::FILTER_X16,
+                    Adafruit_BMP280::STANDBY_MS_500);
+
 }
 
 void loop()
@@ -32,7 +38,19 @@ void loop()
  float pressure = bmp.readPressure();
  // float altitude = bmp.readAltitude;
  
- //Serial.print
+ Serial.println("Temperature = ");
+ Serial.print(temperature);
+ Serial.print(" *C");
+ 
+ Serial.println("Pressure = ");
+ Serial.print(temperature);
+ Serial.print(" hPa");
+ 
+ /*
+ Serial.println("Approx. Altitude = ");
+ Serial.print(altitude);
+ Serial.print(" m");
+ */
 
  delay(2000);
 }
