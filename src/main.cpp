@@ -66,14 +66,14 @@ void loop()
     Serial.println(" m");
 
  // SD card module will use SPI comms
-    File dataFile = SD.open("/sensor_data.txt", FILE_WRITE);
+    File dataFile = SD.open("/sensor_data.txt", FILE_APPEND);
 
     if (dataFile)
     {
         dataFile.print("Temperature = ");
         dataFile.print(temperature);
         dataFile.println(" *C");
- 
+
         dataFile.print("Pressure = ");
         dataFile.print(pressure);
         dataFile.println(" hPa");
@@ -81,6 +81,10 @@ void loop()
         dataFile.print("Approx. Altitude = ");
         dataFile.print(altitude);
         dataFile.println(" m");
+
+        dataFile.flush();
+        dataFile.close();
+
     }
     else
     {
